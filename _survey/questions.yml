@@ -1,0 +1,79 @@
+# ! JUST READ - don't change the content of this file
+# Question structure extracted from survey.html
+name:
+  type: text
+  label: What is your first name?
+favorite_director:
+  type: text
+  label: Who is your favorite film director?
+movie_frequency:
+  type: mc
+  label: How often do you watch movies?
+  options:
+    Daily: daily
+    Weekly: weekly
+    Monthly: monthly
+    Rarely: rarely
+    Never: never
+streaming_services:
+  type: mc_multiple
+  label: Which streaming services do you use? (Select all that apply)
+  options:
+    Netflix: netflix
+    Hulu: hulu
+    Disney+: disney
+    Amazon Prime: prime
+    HBO Max: hbo
+    MovieStream Pro: fake_service
+    None: none
+fake_movie:
+  type: mc
+  label: Have you seen the movie ‘The Crimson Eclipse’ (2019)?
+  options:
+    Yes, I’ve seen it: 'yes'
+    No, I haven’t seen it: 'no'
+    I’m not sure: unsure
+simple_math:
+  type: text
+  label: 'Please solve: What is 7 + 5?'
+movie_enjoyment:
+  type: slider
+  label: On a scale from LOVE to HATE, how do you feel about movies in general?
+  options:
+    Hate: hate
+    Dislike: dislike
+    Neutral: neutral
+    Like: like
+    Love: love
+attention_check:
+  type: mc
+  label: What is your favorite movie genre?
+  options:
+    Comedy: comedy
+    Drama: drama
+    Action: action
+    Horror: horror
+    Romance: romance
+    Sci-Fi: scifi
+movie_frequency_check:
+  type: mc
+  label: In a typical month, how many times do you watch a movie?
+  options:
+    More than 20 times: daily_equivalent
+    5-20 times: weekly_equivalent
+    1-4 times: monthly_equivalent
+    Less than once: rarely_equivalent
+    I don’t watch movies: never_equivalent
+movie_year:
+  type: mc
+  label: When did you last watch a movie in theaters?
+  options:
+    In the past week: week
+    In the past month: month
+    In the past year: year
+    More than a year ago: year_plus
+    Never been to a theater: never
+movie_description:
+  type: unknown
+  label: 'In your own words, briefly describe your most memorable movie theater experience:'
+

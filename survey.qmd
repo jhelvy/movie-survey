@@ -1,0 +1,192 @@
+---
+theme-settings:
+  theme: flatly
+---
+
+```{r}
+library(surveydown)
+```
+
+--- welcome
+
+# Movie Preferences Survey
+
+Welcome! This brief survey asks about your movie watching habits.
+
+```{r}
+sd_question(
+  type = "text",
+  id = "name",
+  label = "What is your first name?"
+)
+```
+
+--- honeypot
+
+## Your Viewing Habits
+
+```{r}
+# Hidden honeypot question 
+sd_question(
+  type = "text",
+  id = "favorite_director",
+  label = "Who is your favorite film director?"
+)
+```
+
+```{r}
+# Time-based trap - this page should take at least 3 seconds to read
+sd_question(
+  type = "mc",
+  id = "movie_frequency",
+  label = "How often do you watch movies?",
+  option = c(
+    "Daily" = "daily",
+    "Weekly" = "weekly", 
+    "Monthly" = "monthly",
+    "Rarely" = "rarely",
+    "Never" = "never"
+  )
+)
+```
+
+```{r}
+# Fake option trap
+sd_question(
+  type = "mc_multiple",
+  id = "streaming_services",
+  label = "Which streaming services do you use? (Select all that apply)",
+  option = c(
+    "Netflix" = "netflix",
+    "Hulu" = "hulu",
+    "Disney+" = "disney",
+    "Amazon Prime" = "prime",
+    "HBO Max" = "hbo",
+    "MovieStream Pro" = "fake_service",  # Fake service
+    "None" = "none"
+  )
+)
+```
+
+--- consistency
+
+## Movie Knowledge
+
+```{r}
+# Ask about a non-existent movie
+sd_question(
+  type = "mc",
+  id = "fake_movie",
+  label = "Have you seen the movie 'The Crimson Eclipse' (2019)?",
+  option = c(
+    "Yes, I've seen it" = "yes",
+    "No, I haven't seen it" = "no",
+    "I'm not sure" = "unsure"
+  )
+)
+```
+
+```{r}
+# Simple math CAPTCHA alternative
+sd_question(
+  type = "numeric",
+  id = "simple_math",
+  label = "Please solve: What is 7 + 5?"
+)
+```
+
+```{r}
+# Reversed scale trap
+sd_question(
+  type = "slider",
+  id = "movie_enjoyment",
+  label = "On a scale from LOVE to HATE, how do you feel about movies in general?",
+  option = c(
+    "Hate" = "hate",
+    "Dislike" = "dislike", 
+    "Neutral" = "neutral",
+    "Like" = "like",
+    "Love" = "love"
+  )
+)
+```
+
+--- attention_check_page
+
+## Your Preferences
+
+Please read carefully: **For this question only, please select "Action" regardless of your actual preference.**
+
+```{r}
+sd_question(
+  type = "mc",
+  id = "attention_check",
+  label = "What is your favorite movie genre?",
+  option = c(
+    "Comedy" = "comedy",
+    "Drama" = "drama",
+    "Action" = "action",
+    "Horror" = "horror",
+    "Romance" = "romance",
+    "Sci-Fi" = "scifi"
+  )
+)
+```
+
+```{r}
+# Consistency check - same question worded differently
+sd_question(
+  type = "mc",
+  id = "movie_frequency_check",
+  label = "In a typical month, how many times do you watch a movie?",
+  option = c(
+    "More than 20 times" = "daily_equivalent",
+    "5-20 times" = "weekly_equivalent",
+    "1-4 times" = "monthly_equivalent", 
+    "Less than once" = "rarely_equivalent",
+    "I don't watch movies" = "never_equivalent"
+  )
+)
+```
+
+--- logic_trap
+
+## Final Questions
+
+```{r}
+# Impossible combination question
+sd_question(
+  type = "mc",
+  id = "movie_year",
+  label = "When did you last watch a movie in theaters?",
+  option = c(
+    "In the past week" = "week",
+    "In the past month" = "month",
+    "In the past year" = "year",
+    "More than a year ago" = "year_plus",
+    "Never been to a theater" = "never"
+  )
+)
+```
+
+```{r}
+# Response time will be tracked for this text question
+sd_question(
+  type = "textarea",
+  id = "movie_description",
+  label = "In your own words, briefly describe your most memorable movie theater experience:",
+  height = "100px"
+)
+```
+
+--- complete
+
+## Thank You!
+
+Your code is: `r sd_output("completion_code", type = "value")`
+
+Please save this code for your records.
+
+```{r}
+sd_close()
+```
